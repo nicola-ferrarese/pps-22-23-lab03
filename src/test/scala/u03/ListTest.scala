@@ -51,7 +51,7 @@ class ListTest:
 
   @Test def testAppend() =
     assertEquals(Cons(10, Cons(20, Cons(30, Nil()))), append(Nil(), l))
-    val tail = Cons(40,Nìl())
+    val tail = Cons(40, Nil())
     assertEquals(Cons(10, Cons(20, Cons(30, Cons(40, Nil())))), append(l, tail))
 
 
