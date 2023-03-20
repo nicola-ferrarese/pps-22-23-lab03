@@ -8,7 +8,6 @@ object Lists extends App :
     case Nil()
   // a companion object (i.e., module) for List
   object List:
-    
     def sum(l: List[Int]): Int = l match
       case Cons(h, t) => h + sum(t)
       case _ => 0
