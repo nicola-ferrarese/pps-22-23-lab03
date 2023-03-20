@@ -63,7 +63,8 @@ class ListTest:
     assertEquals(Cons("10", Cons("20", Cons("30", Nil()))), mapWithFlatMap(l)(_ + ""))
 
   @Test def testFilterWithFlatMap() =
-    assertEquals(Cons(20, Cons(30, Nil())), filter(l)(_ >= 20))
-    assertEquals(Cons(10, Cons(30, Nil())), filter(l)(_ != 20))
+    assertEquals(Cons(20, Cons(30, Nil())), filterWithFlatMap(l)(_ >= 20))
+    assertEquals(Cons(10, Nil()), filterWithFlatMap(l)(_ <= 10))
+    assertEquals(Cons(10, Cons(30, Nil())), filterWithFlatMap(l)(_ != 20))
 
 

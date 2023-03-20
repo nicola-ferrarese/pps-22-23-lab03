@@ -37,10 +37,13 @@ object Lists extends App :
       flatMap(l)(x => Cons(function(x), Nil()))
 
     def filterWithFlatMap[A](l: List[A])(pred: A => Boolean): List[A] = l match
-      case Cons(h, t) if pred(h) => Cons(h, filterWithFlatMap(t)(pred))
-      case Cons(_, t) => filterWithFlatMap(t)(pred) 
-      case Nil() => Nil()
-      
+      /* Is it allowed?
+      case Cons(h, t) => flatMap(l)(x => if pred(x)
+                                          then Cons(x, Nil())
+                                          else Nil())
+      */
+      case Cons(h, t) => flatMap(l)(x => filter(Cons(x, Nil()))(pred))
+
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
   println(List.sum(l)) // 60
