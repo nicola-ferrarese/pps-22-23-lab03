@@ -43,6 +43,7 @@ object Lists extends App :
                                           else Nil())
       */
       case Cons(h, t) => flatMap(l)(x => filter(Cons(x, Nil()))(pred))
+      case Nil() => Nil()
 
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
