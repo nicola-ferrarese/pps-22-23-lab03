@@ -5,6 +5,5 @@ out/
 .idea/shelf
 .scalafmt.conf
 .bsp/
-.idea/
 *.class
 target/

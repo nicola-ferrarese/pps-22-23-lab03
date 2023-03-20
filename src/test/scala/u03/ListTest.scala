@@ -16,6 +16,7 @@ class ListTest:
         get[E]: List[E] x Int -> Option[E]
         add[E]: List[E] x Int x E -> Option[List[E]]
         drop[E]: List[E] x Int -> Option[List[E]]
+        append[E]: List[E] x List[E] -> List[E]
 
     - Axioms:
         sum(Nil()) = 0
@@ -25,6 +26,8 @@ class ListTest:
         get(Cons(h,t),i) = et(t, i-1)
         drop(Nil,i) = None()
         drop(Cons(h,t), i) = List
+        append(Cons(h,t), l) = Cons(h, append(t,l))
+        append(l, Nil) = l
   */
 
   val l: List[Int] = Cons(10, Cons(20, Cons(30, Nil())))
@@ -45,6 +48,14 @@ class ListTest:
     assertEquals(Cons(20, Cons(30, Nil())), drop(l, 1))
     assertEquals(Nil(), drop(l, 5))
     assertEquals(Cons(30, Nil()), drop(l, 2))
+
+  @Test def testAppend() =
+    assertEquals(Cons(10, Cons(20, Cons(30, Nil()))), append(Nil(), l))
+    val tail = Cons(40,Nìl())
+    assertEquals(Cons(10, Cons(20, Cons(30, Cons(40, Nil())))), append(l, tail))
+
+
+
 
 
 
