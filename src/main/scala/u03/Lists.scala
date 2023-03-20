@@ -24,14 +24,19 @@ object Lists extends App :
     def drop[A](l: List[A], n: Int): List[A] = l match
       case Cons(_, t) if n > 0 => drop(t, n-1)
       case _ => l
-      
+
     def append[A](l1: List[A], l2: List[A]): List[A] = l1 match
       case Cons(h, t) => Cons(h, append(t, l2))
       case Nil() => l2
-      
+
     def flatMap[A, B](l: List[A])(function: A => List[B]): List[B] = l match
       case Cons(h, t) => append(function(h), flatMap(t)(function))
       case Nil() => Nil()
+
+    def mapWithFlatMap[A, B](l: List[A])(function: A => B): List[B] =
+      flatMap(l)(x => Cons(function(x), Nil()))
+
+
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
   println(List.sum(l)) // 60
