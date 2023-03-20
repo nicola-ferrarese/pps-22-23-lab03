@@ -4,3 +4,7 @@ out/
 .idea/tasks.xml
 .idea/shelf
 .scalafmt.conf
+.bsp/
+.idea/
+*.class
+target/

@@ -42,8 +42,9 @@ class ListTest:
     assertEquals(Cons(10, Cons(30, Nil())), filter(l)(_!=20))
 
   @Test def testDrop() =
-    assertEquals(None(), drop(l, 5)
-    assertEquals(Some(Cons(30, Nil())), drop(l, 2))
-    assertEquals(Some(Cons(10, Cons(30, Nil())), drop(l, 2)))
+    assertEquals(Cons(20, Cons(30, Nil())), drop(l, 1))
+    assertEquals(Nil(), drop(l, 5))
+    assertEquals(Cons(30, Nil()), drop(l, 2))
+
 
 
