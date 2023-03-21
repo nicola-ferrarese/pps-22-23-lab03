@@ -45,7 +45,15 @@ object Lists extends App :
       case Cons(h, t) => flatMap(l)(x => filter(Cons(x, Nil()))(pred))
       case Nil() => Nil()
 
-    def max(l: List[Int]): Option[Int] = ???
+    def max(l: List[Int]): Option[Int] = l match
+      case Cons(h,t) =>                 // List not empty
+        val maxTail = max(t)            // call recursively on tail
+        maxTail match
+          case Some(tmp_max) =>         // tail is not empty
+            if (h > tmp_max) Some(h)    // compare head & tmp_tail
+            else Some(tmp_max)
+          case None => Some(h)          // tail is empty, implies head is max
+      case Nil() => None                // Empty List
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
   println(List.sum(l)) // 60
