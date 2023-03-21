@@ -45,6 +45,7 @@ object Lists extends App :
       case Cons(h, t) => flatMap(l)(x => filter(Cons(x, Nil()))(pred))
       case Nil() => Nil()
 
+    def max(l: List[Int]): Option[Int] = ???
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
   println(List.sum(l)) // 60

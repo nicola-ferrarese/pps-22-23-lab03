@@ -17,6 +17,7 @@ class ListTest:
         add[E]: List[E] x Int x E -> Option[List[E]]
         drop[E]: List[E] x Int -> Option[List[E]]
         append[E]: List[E] x List[E] -> List[E]
+        max: List[Int] -> Option[Int]
 
     - Axioms:
         sum(Nil()) = 0
@@ -28,6 +29,8 @@ class ListTest:
         drop(Cons(h,t), i) = List
         append(Cons(h,t), l) = Cons(h, append(t,l))
         append(l, Nil) = l
+        max(Cons(10, Cons(20, Cons(30, Nil)))) = Some(30)
+        max(Nil) = None()
   */
 
   val l: List[Int] = Cons(10, Cons(20, Cons(30, Nil())))
@@ -67,4 +70,7 @@ class ListTest:
     assertEquals(Cons(10, Nil()), filterWithFlatMap(l)(_ <= 10))
     assertEquals(Cons(10, Cons(30, Nil())), filterWithFlatMap(l)(_ != 20))
 
+  @Test def testMax() =
+    assertEquals(Some(30), max(l))
+    assertEquals(None, max(Nil()))
 
