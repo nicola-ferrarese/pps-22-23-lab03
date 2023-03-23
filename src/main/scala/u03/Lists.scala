@@ -1,5 +1,7 @@
 package u03
 
+import u02.Modules.Person
+
 object Lists extends App :
 
   // A generic linkedlist
@@ -56,8 +58,25 @@ object Lists extends App :
       case Nil() => None                // Empty List
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
-  println(List.sum(l)) // 60
+
 
   import List.*
+  import u02.Modules.Person.*
 
-  println(sum(map(filter(l)(_ >= 20))(_ + 1))) // 21+31 = 52
+  def getCourses(people: List[Person]): List[String] = people match
+    case Cons(Student(_, _), t) => getCourses(t)
+    case Cons(Teacher(_, course), t) => Cons(course, getCourses(t))
+    case Nil() => Nil()
+
+  def getCoursesWithFlatMap(people: List[Person]): List[String] = flatMap(people) {
+    case Student(_, _) => Nil()
+    case Teacher(_, course) => Cons(course, Nil())
+  }
+
+  def foldLeft[A,B](list: List[A])(default: B)(op: (B, A)=> B): B = list match
+    case Cons(h, t) => foldLeft(t)(op(default, h))(op)
+    case Nil() => default
+
+  def foldRight[A,B](list: List[A])(default: B)(op: (A, B)=> B): B = list match
+    case Cons(h, t) => op(h, foldRight(t)(default)(op))
+    case Nil() => default

@@ -74,3 +74,19 @@ class ListTest:
     assertEquals(Some(30), max(l))
     assertEquals(None, max(Nil()))
 
+
+  @Test def testGetCourses() =
+    import u02.Modules.Person.*
+    val people = Cons(Student("Mario",3), Cons(Teacher("Luigi", "PPS"), Cons(Student("Pippo", 1), Nil())))
+    assertEquals(Cons("PPS", Nil()), getCourses(people))
+    assertEquals(Cons("PPS", Nil()), getCoursesWithFlatMap(people))
+
+  @Test def testFoldLeft() =
+    val l = Cons(1, Cons(2, Cons(3, Nil())))
+    assertEquals(6, foldLeft(l)(0)(_+_))
+    assertEquals(6, foldLeft(l)(1)(_*_))
+
+  @Test def testFoldRight() =
+    val l = Cons(1, Cons(2, Cons(3, Nil())))
+    assertEquals(6, foldRight(l)(0)(_+_))
+    assertEquals(6, foldRight(l)(1)(_*_))
