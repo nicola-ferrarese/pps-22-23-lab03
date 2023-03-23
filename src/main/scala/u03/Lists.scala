@@ -22,7 +22,7 @@ object Lists extends App :
       case Cons(h, t) if pred(h) => Cons(h, filter(t)(pred))
       case Cons(_, t) => filter(t)(pred)
       case Nil() => Nil()
-
+// Task 1
     def drop[A](l: List[A], n: Int): List[A] = l match
       case Cons(_, t) if n > 0 => drop(t, n-1)
       case _ => l
@@ -47,6 +47,7 @@ object Lists extends App :
       case Cons(h, t) => flatMap(l)(x => filter(Cons(x, Nil()))(pred))
       case Nil() => Nil()
 
+// Task 2
     def max(l: List[Int]): Option[Int] = l match
       case Cons(h,t) =>                 // List not empty
         val maxTail = max(t)            // call recursively on tail
@@ -57,9 +58,7 @@ object Lists extends App :
           case None => Some(h)          // tail is empty, implies head is max
       case Nil() => None                // Empty List
 
-  val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
-
-
+//Task 3
   import List.*
   import u02.Modules.Person.*
 
@@ -73,6 +72,7 @@ object Lists extends App :
     case Teacher(_, course) => Cons(course, Nil())
   }
 
+// Task 4
   def foldLeft[A,B](list: List[A])(default: B)(op: (B, A)=> B): B = list match
     case Cons(h, t) => foldLeft(t)(op(default, h))(op)
     case Nil() => default
